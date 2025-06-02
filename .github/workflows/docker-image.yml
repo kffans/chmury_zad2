@@ -13,7 +13,10 @@ jobs:
         steps:
           - name: 'Checkout GitHub Action'
             uses: actions/checkout@main
-
+          - name: QEMU set-up
+            uses: docker/setup-qemu-action@v3
+          - name: Buildx set-up
+            uses: docker/setup-buildx-action@v3
           - name: 'Login to GitHub Container Registry'
             uses: docker/login-action@v1
             with:
@@ -23,8 +26,8 @@ jobs:
 
           - name: 'Build Inventory Image'
             run: |
-              docker build . --tag ghcr.io/kffans/app:latest \
+              docker buildx build . --tag ghcr.io/kffans/app:latest \
                 --cache-from type=registry,ref=ghcr.io/kffans/app:latest \
-                --cache-to type=registry,ref=ghcr.io/kffans/app:latest,mode=max \
-                --platform linux/amd64,linux/arm64
-              docker push ghcr.io/kffans/app:latest
+                --cache-to type=registry,ref=ghcr.io/kffans/app:latest,mode=max \ 
+                --platform linux/amd64,linux/arm64 \
+                --push
