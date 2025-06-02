@@ -1,5 +1,7 @@
 name: Deploy GHCR
-
+permissions:
+  contents: read
+  packages: write
 on:
   workflow_run:
         workflows: ['Trivy Scan']
