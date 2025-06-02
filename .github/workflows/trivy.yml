@@ -1,4 +1,4 @@
-name: Trivy Docker Security Scan
+name: Trivy Scan
 on: [push, pull_request]
  
 permissions:
