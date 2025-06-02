@@ -1,10 +1,11 @@
 name: Deploy Images to GHCR
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_run:
+        workflows: ['Trivy']
+        types: [completed]
+        branches:
+            - 'beta'
 
 jobs:
       push-store-image:
