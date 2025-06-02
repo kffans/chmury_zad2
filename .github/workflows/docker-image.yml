@@ -1,8 +1,8 @@
-name: Deploy Images to GHCR
+name: Deploy GHCR
 
 on:
   workflow_run:
-        workflows: ['Trivy']
+        workflows: ['Trivy Scan']
         types: [completed]
         branches:
             - 'beta'
