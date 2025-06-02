@@ -5,7 +5,7 @@ on:
         workflows: ['Trivy Scan']
         types: [completed]
         branches:
-            - 'beta'
+            - 'main'
 
 jobs:
       push-store-image:
