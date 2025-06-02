@@ -4,6 +4,8 @@ on: [push, pull_request]
 permissions:
   actions: read
   security-events: write
+  contents: read
+  packages: write
 
 
 jobs:
