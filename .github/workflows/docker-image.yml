@@ -25,7 +25,8 @@ jobs:
 
           - name: 'Build Inventory Image'
             run: |
-              docker build . --tag ghcr.io/kffans/app:latest
-              docker push ghcr.io/kffans/app:latest \
+              docker build . --tag ghcr.io/kffans/app:latest \
                 --cache-from type=registry,ref=ghcr.io/kffans/app:latest \
-                --cache-to type=registry,ref=ghcr.io/kffans/app:latest,mode=max
+                --cache-to type=registry,ref=ghcr.io/kffans/app:latest,mode=max \
+                --platform linux/amd64,linux/arm64
+              docker push ghcr.io/kffans/app:latest
