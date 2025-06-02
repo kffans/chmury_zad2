@@ -1,0 +1,59 @@
+<html>
+	<body>
+		Państwo:
+		<select id="panstwo" name="panstwo" onmouseleave="update()">
+			<option value="pl">Polska</option>
+			<option value="de">Niemcy</option>
+			<option value="fi">Finlandia</option>
+		</select>
+		<br><br>
+
+		Miasto: 
+		<select id="miasto" name="miasto"> </select>
+		<br><br>
+
+		<button id="spr" onclick="spr()">Sprawdź</button>
+		<br><br>
+
+		<div id="pogoda"></div>
+
+		<script>
+			// uaktualnia miasta jezeli zmieniono kraj
+			function updateCity(arr){
+				var obj = document.getElementById('miasto');
+				obj.innerHTML = "";
+				for(var i=0; i<arr.length; i++){
+					obj.innerHTML += "<option value='" + arr[i].gid + "'>" + arr[i].name + "</option>";
+				}
+			}
+			function update(){
+				let pl = [{name:"Warszawa",  gid:3091675},
+					  {name:"Lublin",    gid:7639015},
+					  {name:"Radom",     gid:13979298}];
+				let de = [{name:"Berlin",    gid:7166863},
+					  {name:"Gottenheim",gid:3773696}];
+				let fi = [{name:"Helsinki",  gid:3031875},
+					  {name:"Turku",     gid:10955571}];
+				switch(document.getElementById('panstwo').value){
+					case "pl": updateCity(pl); break;
+					case "de": updateCity(de); break;
+					case "fi": updateCity(fi); break;
+					default: break;
+				}
+			}
+			update();
+
+			// generuje widget pogodowy dla miasta
+			function spr(){
+				var geoNumber = parseInt(document.getElementById('miasto').value);
+				if(Number.isNaN(geoNumber)) { return; }
+
+				var str = '<iframe src="https://api.wo-cloud.com/content/widget/?geoObjectKey=' + geoNumber.toString() + '&language=pl&region=PL&timeFormat=HH:mm&windUnit=kmh&systemOfMeasurement=metric&temperatureUnit=celsius" name="CW2" scrolling="no" width="170" height="192" frameborder="0" style=""></iframe>';
+				document.getElementById('pogoda').innerHTML = str;
+
+			}
+		</script>
+
+
+	</body>
+</html>

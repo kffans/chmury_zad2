@@ -1,0 +1,5 @@
+# zbudowanie obrazu
+docker build -t pogoda .
+
+# uruchomienie obrazu
+docker run -d -p 80:80 --name web-pogoda pogoda
