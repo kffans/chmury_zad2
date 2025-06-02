@@ -1,1 +1,1 @@
-Skanowanie jest wykonywane przez Trivy (trivy.yaml), następnie jeżeli skanowanie odbyło się bez błędów krytycznych, odbywa się workflow Deploy, który buduje obraz na dwie platformy oraz pushuje dany obraz na ghcr.io
+Skanowanie jest wykonywane przez Trivy (trivy.yaml), następnie jeżeli skanowanie odbyło się bez błędów krytycznych, odbywa się workflow budowania obrazu (docker-image.yaml), który buduje obraz na dwie platformy oraz pushuje na ghcr.io, korzystając z dostępnego cache.
